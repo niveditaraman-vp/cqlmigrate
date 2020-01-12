@@ -43,7 +43,7 @@ public class CassandraNoOpLockingMechanismTest {
                 .build();
 
         primingClient.prime(PrimingRequest.preparedStatementBuilder()
-                .withQuery("INSERT INTO cqlmigrate.locks (name, client) VALUES (?, ?) IF NOT EXISTS")
+                .withQuery("INSERT INTO cqlmigrate.locks (name, client) VALUES (?, ?) ")
                 .withThen(then()
                         .withVariableTypes(PrimitiveType.TEXT, PrimitiveType.TEXT)
                         .withColumnTypes(column("[applied]", PrimitiveType.BOOLEAN))

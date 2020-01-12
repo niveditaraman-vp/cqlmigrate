@@ -41,7 +41,7 @@ class CassandraLockingMechanism extends LockingMechanism {
         super.init();
 
         try {
-            insertLockQuery = session.prepare(String.format("INSERT INTO %s.locks (name, client) VALUES (?, ?) IF NOT EXISTS", lockKeyspace))
+            insertLockQuery = session.prepare(String.format("INSERT INTO %s.locks (name, client) VALUES (?, ?) ", lockKeyspace))
                     .setConsistencyLevel(consistencyLevel);
             deleteLockQuery = session.prepare(String.format("DELETE FROM %s.locks WHERE name = ? IF client = ?", lockKeyspace))
                     .setConsistencyLevel(consistencyLevel);;
